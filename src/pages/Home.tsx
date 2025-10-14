@@ -1,3 +1,8 @@
+/**
+ * Space Maze - Home Component
+ * Copyright (c) 2025 Ruel McNeil. All rights reserved.
+ */
+
 import { Link } from "react-router-dom";
 import { StarField } from "@/components/StarField";
 import { Logo3D } from "@/components/Logo3D";
