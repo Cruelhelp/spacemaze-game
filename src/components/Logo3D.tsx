@@ -1,42 +1,52 @@
 export const Logo3D = ({ size = "md" }: { size?: "sm" | "md" | "lg" }) => {
-  const sizeClasses = {
-    sm: "w-12 h-12",
-    md: "w-20 h-20",
-    lg: "w-32 h-32",
+  const sizeMap = {
+    sm: { size: "w-16 h-16", depth: "12px" },
+    md: { size: "w-24 h-24", depth: "20px" },
+    lg: { size: "w-40 h-40", depth: "30px" },
   };
+  
+  const { size: sizeClass, depth } = sizeMap[size];
 
   return (
-    <div className={`${sizeClasses[size]} perspective-3d`}>
-      <div className="relative w-full h-full animate-rotate-cube">
-        {/* Main cube */}
+    <div className={`${sizeClass} perspective-3d`}>
+      <div className="relative w-full h-full" style={{ 
+        transform: "perspective(1000px) rotateX(30deg) rotateY(-45deg)",
+        transformStyle: "preserve-3d"
+      }}>
+        {/* Main face - matches game tiles */}
         <div 
-          className="absolute inset-0 rounded-lg opacity-90"
+          className="absolute inset-0 opacity-100"
           style={{
-            background: "linear-gradient(135deg, hsl(280 60% 60%) 0%, hsl(260 50% 40%) 100%)",
+            background: "linear-gradient(135deg, hsl(280 60% 60%) 0%, hsl(260 50% 50%) 100%)",
             boxShadow: `
-              -0.5rem 0.5rem 0.5rem hsl(260 40% 20%),
-              -1rem 1rem 2rem hsl(260 60% 10% / 0.5),
-              0 0 30px hsl(280 80% 65% / 0.4)
+              0 0 20px hsl(280 80% 65% / 0.4),
+              0 0 40px hsl(280 80% 65% / 0.2),
+              inset -0.5rem 0.5rem 1rem rgba(255, 255, 255, 0.1)
             `,
-            transform: "rotateX(30deg) rotateY(-30deg)",
           }}
         />
         
-        {/* Top face */}
+        {/* Left face - darker */}
         <div 
-          className="absolute inset-0 rounded-lg opacity-70"
+          className="absolute top-0 h-full opacity-100 origin-right"
           style={{
-            background: "linear-gradient(135deg, hsl(280 80% 70%) 0%, hsl(280 60% 60%) 100%)",
-            transform: "rotateX(30deg) rotateY(-30deg) translateZ(10px)",
+            width: depth,
+            left: `-${depth}`,
+            background: "linear-gradient(135deg, hsl(270 50% 30%) 0%, hsl(260 50% 25%) 100%)",
+            transform: "skewY(-45deg)",
+            boxShadow: "inset 2px 0 10px rgba(0, 0, 0, 0.5)",
           }}
         />
         
-        {/* Side face */}
+        {/* Bottom face - darkest */}
         <div 
-          className="absolute inset-0 rounded-lg opacity-50"
+          className="absolute left-0 w-full opacity-100 origin-top"
           style={{
-            background: "linear-gradient(135deg, hsl(260 50% 40%) 0%, hsl(260 40% 30%) 100%)",
-            transform: "rotateX(30deg) rotateY(-30deg) translateX(-10px)",
+            height: depth,
+            top: "100%",
+            background: "linear-gradient(135deg, hsl(260 40% 20%) 0%, hsl(270 40% 15%) 100%)",
+            transform: "skewX(-45deg)",
+            boxShadow: "inset 0 2px 10px rgba(0, 0, 0, 0.6)",
           }}
         />
       </div>

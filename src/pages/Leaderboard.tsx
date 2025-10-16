@@ -1,28 +1,31 @@
-import { StarField } from "@/components/StarField";
-import { Logo3D } from "@/components/Logo3D";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { useNavigate } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import { Home, Play, Trophy, Medal, Award } from "lucide-react";
+import { Home, Trophy, Play } from "lucide-react";
+import { StarField } from "@/components/StarField";
+import { Logo3D } from "@/components/Logo3D";
 
 const Leaderboard = () => {
   const navigate = useNavigate();
+  const [scores, setScores] = useState<any[]>([]);
 
-  const { data: scores, isLoading } = useQuery({
-    queryKey: ["leaderboard"],
-    queryFn: async () => {
+  useEffect(() => {
+    const fetchScores = async () => {
       const { data, error } = await supabase
         .from("leaderboard")
         .select("*")
         .order("completion_time", { ascending: true })
         .limit(100);
       
-      if (error) throw error;
-      return data;
-    },
-  });
+      if (!error && data) {
+        setScores(data);
+      }
+    };
+
+    fetchScores();
+  }, []);
 
   const formatTime = (ms: number) => {
     const seconds = Math.floor(ms / 1000);
@@ -37,111 +40,79 @@ const Leaderboard = () => {
     return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
   };
 
-  const getRankIcon = (index: number) => {
-    if (index === 0) return <Trophy className="w-6 h-6 text-yellow-400" />;
-    if (index === 1) return <Medal className="w-6 h-6 text-gray-400" />;
-    if (index === 2) return <Award className="w-6 h-6 text-amber-600" />;
-    return null;
-  };
-
-  const getRankColor = (index: number) => {
-    if (index === 0) return "bg-gradient-to-r from-yellow-500/20 to-yellow-600/20 border-yellow-500/50";
-    if (index === 1) return "bg-gradient-to-r from-gray-400/20 to-gray-500/20 border-gray-400/50";
-    if (index === 2) return "bg-gradient-to-r from-amber-600/20 to-amber-700/20 border-amber-600/50";
-    return "bg-card/30 border-primary/20";
-  };
-
   return (
-    <div className="min-h-screen relative overflow-hidden">
+    <div className="min-h-screen relative overflow-hidden bg-background">
       <StarField />
       
-      <div className="relative z-10 container mx-auto px-4 py-8">
-        {/* Header */}
-        <div className="flex items-center justify-between mb-8">
-          <Button 
-            variant="outline" 
-            onClick={() => navigate("/")}
-            className="gap-2 border-primary/50 hover:border-primary hover:bg-primary/10"
-          >
-            <Home className="w-4 h-4" />
-            Home
-          </Button>
-          
-          <div className="flex items-center gap-4">
-            <Logo3D size="sm" />
-            <h1 className="text-4xl font-bold text-gradient glow-text">Leaderboard</h1>
+      <div className="container mx-auto px-4 py-8 md:py-12 relative z-10">
+        <div className="max-w-5xl mx-auto">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-8">
+            <Button 
+              variant="outline" 
+              onClick={() => navigate("/")}
+              className="gap-2 border-primary/50 hover:border-primary hover:bg-primary/10 pixel-font text-sm w-full sm:w-auto"
+            >
+              <Home className="w-4 h-4" />
+              HOME
+            </Button>
+            
+            <div className="flex items-center gap-3">
+              <Logo3D size="sm" />
+              <h1 className="text-3xl md:text-5xl font-black text-gradient glow-text pixel-font">
+                LEADERBOARD
+              </h1>
+            </div>
+            
+            <Button 
+              onClick={() => navigate("/game")}
+              className="gap-2 bg-primary hover:bg-primary/90 animate-pulse-glow pixel-font text-sm w-full sm:w-auto"
+            >
+              <Play className="w-4 h-4" />
+              PLAY
+            </Button>
           </div>
-          
-          <Button 
-            onClick={() => navigate("/game")}
-            className="gap-2 bg-primary hover:bg-primary/90 animate-pulse-glow"
-          >
-            <Play className="w-4 h-4" />
-            Play
-          </Button>
-        </div>
 
-        {/* Leaderboard */}
-        <Card className="max-w-4xl mx-auto bg-card/50 backdrop-blur-sm border-primary/30 p-6">
-          {isLoading ? (
-            <div className="text-center py-12 text-muted-foreground">
-              Loading scores...
-            </div>
-          ) : scores && scores.length > 0 ? (
-            <div className="space-y-3">
-              {scores.map((score, index) => (
-                <div 
-                  key={score.id}
-                  className={`p-4 rounded-lg border transition-all hover:scale-[1.02] ${getRankColor(index)}`}
-                >
-                  <div className="flex items-center gap-4">
-                    {/* Rank */}
-                    <div className="flex items-center justify-center w-12">
-                      {getRankIcon(index) || (
-                        <span className="text-2xl font-bold text-muted-foreground">
-                          #{index + 1}
+          <Card className="bg-card/80 backdrop-blur-lg border-2 border-primary/50 p-6 md:p-8 shadow-[0_0_50px_rgba(168,85,247,0.3)]">
+            {scores.length === 0 ? (
+              <p className="text-center text-muted-foreground py-12 pixel-font text-sm">
+                No scores yet. Be the first to complete the challenge!
+              </p>
+            ) : (
+              <div className="space-y-4">
+                {scores.map((score, index) => (
+                  <div 
+                    key={score.id} 
+                    className={`flex flex-col gap-3 p-4 md:p-5 rounded-lg transition-all border-2 ${
+                      index < 3 
+                        ? 'bg-primary/10 border-primary/40 hover:bg-primary/20 hover:border-primary/60 hover:shadow-[0_0_30px_rgba(168,85,247,0.4)]' 
+                        : 'bg-background/50 border-border/30 hover:bg-background/70 hover:border-primary/30'
+                    }`}
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3 md:gap-4">
+                        <span className="text-2xl md:text-3xl font-bold min-w-[3rem]">
+                          {index === 0 ? "🥇" : index === 1 ? "🥈" : index === 2 ? "🥉" : `#${index + 1}`}
                         </span>
-                      )}
-                    </div>
-
-                    {/* Player Info */}
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-baseline gap-3 mb-1">
-                        <h3 className="text-xl font-bold truncate">{score.player_name}</h3>
-                        <span className="text-sm text-muted-foreground">
-                          {formatDate(score.created_at)}
-                        </span>
+                        <span className="text-base md:text-lg font-medium pixel-font">{score.player_name}</span>
                       </div>
-                      
-                      {score.comment && (
-                        <p className="text-sm text-muted-foreground italic truncate">
-                          "{score.comment}"
-                        </p>
-                      )}
-                    </div>
-
-                    {/* Time */}
-                    <div className="text-right">
-                      <div className="text-2xl font-mono text-secondary font-bold">
+                      <span className="text-secondary font-mono font-bold text-lg md:text-xl glow-text pixel-font">
                         {formatTime(score.completion_time)}
-                      </div>
+                      </span>
                     </div>
+                    {score.comment && (
+                      <p className="text-xs md:text-sm text-foreground/70 italic ml-12 md:ml-14 pixel-font">
+                        "{score.comment}"
+                      </p>
+                    )}
+                    <p className="text-xs text-muted-foreground ml-12 md:ml-14 pixel-font">
+                      {formatDate(score.created_at)}
+                    </p>
                   </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-12">
-              <p className="text-muted-foreground mb-4">No scores yet. Be the first!</p>
-              <Button 
-                onClick={() => navigate("/game")}
-                className="bg-primary hover:bg-primary/90"
-              >
-                Start Playing
-              </Button>
-            </div>
-          )}
-        </Card>
+                ))}
+              </div>
+            )}
+          </Card>
+        </div>
       </div>
     </div>
   );

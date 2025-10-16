@@ -68,6 +68,11 @@ All colors MUST be HSL.
     @apply bg-background text-foreground overflow-x-hidden;
     background: hsl(var(--deep-space));
   }
+  
+  .pixel-font {
+    font-family: 'Press Start 2P', cursive;
+    text-transform: uppercase;
+  }
 }
 
 @layer utilities {
