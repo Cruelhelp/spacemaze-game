@@ -132,6 +132,10 @@ All colors MUST be HSL.
   .glow-text {
     text-shadow: 0 0 10px hsl(280 80% 65% / 0.8), 0 0 20px hsl(280 80% 65% / 0.5);
   }
+
+  .glow-text-sm {
+    text-shadow: 0 0 5px hsl(280 80% 65% / 0.6), 0 0 10px hsl(280 80% 65% / 0.3);
+  }
   
   .perspective-3d {
     transform-style: preserve-3d;

@@ -6,6 +6,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { Trophy, Play } from "lucide-react";
 import { Logo3D } from "@/components/Logo3D";
 import { StarField } from "@/components/StarField";
+import { Footer } from "@/components/Footer";
+import { CodeViewer } from "@/components/CodeViewer";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -36,10 +38,11 @@ const Home = () => {
   };
 
   return (
-    <div className="min-h-screen relative overflow-hidden bg-background">
+    <div className="min-h-screen relative overflow-hidden bg-background flex flex-col">
       <StarField />
+      <CodeViewer />
       
-      <div className="container mx-auto px-4 py-12 relative z-10">
+      <div className="container mx-auto px-4 py-12 relative z-10 flex-1">
         <div className="max-w-5xl mx-auto text-center space-y-12 animate-slide-in-up">
           <div className="flex justify-center mb-6 animate-float">
             <Logo3D size="lg" />
@@ -109,6 +112,8 @@ const Home = () => {
           )}
         </div>
       </div>
+      
+      <Footer />
     </div>
   );
 };

@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { Home, Trophy } from "lucide-react";
+import { CodeViewer } from "@/components/CodeViewer";
+import { Footer } from "@/components/Footer";
 import "./game-styles.css";
 
 const TAUNTS = [
@@ -122,8 +124,9 @@ const Game = () => {
   };
 
   return (
-    <div className="min-h-screen relative overflow-hidden">
+    <div className="min-h-screen relative overflow-hidden flex flex-col">
       <StarField />
+      <CodeViewer />
       
       {/* Taunt Display */}
       {showTaunt && (
@@ -158,7 +161,7 @@ const Game = () => {
       </div>
 
       {/* Game Container */}
-      <div className="game-container">
+      <div className="game-container flex-1">
         <div className="center">
           <input type="checkbox" id="level-one" />
           <div className="level" data-level="1">
@@ -234,6 +237,8 @@ const Game = () => {
           <input type="checkbox" id="game-end-trigger" style={{ display: "none" }} />
         </div>
       </div>
+
+      <Footer />
 
       {/* Completion Dialog */}
       <Dialog open={gameCompleted} onOpenChange={setGameCompleted}>

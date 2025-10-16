@@ -6,6 +6,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { Home, Trophy, Play } from "lucide-react";
 import { StarField } from "@/components/StarField";
 import { Logo3D } from "@/components/Logo3D";
+import { Footer } from "@/components/Footer";
+import { CodeViewer } from "@/components/CodeViewer";
 
 const Leaderboard = () => {
   const navigate = useNavigate();
@@ -41,10 +43,11 @@ const Leaderboard = () => {
   };
 
   return (
-    <div className="min-h-screen relative overflow-hidden bg-background">
+    <div className="min-h-screen relative overflow-hidden bg-background flex flex-col">
       <StarField />
+      <CodeViewer />
       
-      <div className="container mx-auto px-4 py-8 md:py-12 relative z-10">
+      <div className="container mx-auto px-4 py-8 md:py-12 relative z-10 flex-1">
         <div className="max-w-5xl mx-auto">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-8">
             <Button 
@@ -114,6 +117,8 @@ const Leaderboard = () => {
           </Card>
         </div>
       </div>
+      
+      <Footer />
     </div>
   );
 };
