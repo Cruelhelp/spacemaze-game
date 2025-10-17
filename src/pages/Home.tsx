@@ -8,7 +8,6 @@ import { Logo3D } from "@/components/Logo3D";
 import { StarField } from "@/components/StarField";
 import { Footer } from "@/components/Footer";
 import { CodeViewer } from "@/components/CodeViewer";
-import { Header } from "@/components/Header";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -42,16 +41,15 @@ const Home = () => {
     <div className="min-h-screen relative overflow-hidden bg-background flex flex-col">
       <StarField />
       <CodeViewer />
-      <Header />
       
-      <div className="container mx-auto px-4 pt-28 pb-12 relative z-10 flex-1">
-        <div className="max-w-5xl mx-auto text-center space-y-12">
-          <div className="flex justify-center mb-6 animate-bounce-in">
+      <div className="container mx-auto px-4 py-12 relative z-10 flex-1">
+        <div className="max-w-5xl mx-auto text-center space-y-12 animate-slide-in-up">
+          <div className="flex justify-center mb-6 animate-float">
             <Logo3D size="lg" />
           </div>
           
-          <div className="space-y-4 animate-slide-in-up">
-            <h1 className="text-7xl md:text-9xl font-black text-gradient glow-text pixel-font tracking-wider drop-shadow-[0_0_30px_rgba(168,85,247,0.8)] animate-glow-pulse">
+          <div className="space-y-4">
+            <h1 className="text-7xl md:text-9xl font-black text-gradient glow-text pixel-font tracking-wider drop-shadow-[0_0_30px_rgba(168,85,247,0.8)]">
               SPACE MAZE
             </h1>
             <p className="text-xl md:text-2xl text-secondary font-bold pixel-font tracking-wide glow-text animate-pulse-glow">
@@ -59,12 +57,12 @@ const Home = () => {
             </p>
           </div>
           
-          <p className="text-base md:text-lg text-foreground/90 max-w-3xl mx-auto leading-relaxed pixel-font animate-slide-in-up" style={{ animationDelay: '0.2s', opacity: 0, animationFillMode: 'forwards' }}>
+          <p className="text-base md:text-lg text-foreground/90 max-w-3xl mx-auto leading-relaxed pixel-font">
             Navigate the dimensional cube grid. Hover to materialize the quantum path. 
-            One miscalculation resets the timeline. Eight levels stand between you and glory.
+            One miscalculation resets the timeline. Four levels stand between you and glory.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-6 justify-center pt-8 animate-slide-in-up" style={{ animationDelay: '0.4s', opacity: 0, animationFillMode: 'forwards' }}>
+          <div className="flex flex-col sm:flex-row gap-6 justify-center pt-8">
             <Button 
               size="lg" 
               onClick={() => navigate("/game")}
@@ -87,7 +85,7 @@ const Home = () => {
 
           {/* Top Scores Preview */}
           {topScores.length > 0 && (
-            <Card className="max-w-3xl mx-auto bg-card/80 backdrop-blur-lg border-2 border-primary/50 p-8 shadow-[0_0_50px_rgba(168,85,247,0.3)] animate-bounce-in" style={{ animationDelay: '0.6s', opacity: 0, animationFillMode: 'forwards' }}>
+            <Card className="max-w-3xl mx-auto bg-card/80 backdrop-blur-lg border-2 border-primary/50 p-8 shadow-[0_0_50px_rgba(168,85,247,0.3)] animate-slide-in-up">
               <h2 className="text-2xl md:text-3xl font-bold text-gradient mb-6 flex items-center justify-center gap-3 pixel-font glow-text">
                 <Trophy className="h-7 w-7 md:h-8 w-8" />
                 HALL OF FAME
