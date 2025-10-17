@@ -158,10 +158,10 @@ input:checked + .level {
 .center {
   position: absolute;
   top: 50%;
-  left: 60%;
+  left: 50%;
   width: 50rem;
   height: 50rem;
-  transform: perspective(100rem) translate3d(-50%, -50%, 0) rotateZ(-45deg);
+  transform: perspective(100rem) translate3d(-50%, -50%, 0) rotateZ(-45deg) scale(0.7);
   transform-style: preserve-3d;
 }
 

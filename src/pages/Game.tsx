@@ -23,6 +23,16 @@ const TAUNTS = [
   "RESET! Hope you learned something",
   "Is this your first time using a cursor?",
   "The universe is laughing at you",
+  "Did you even TRY? LOL",
+  "Wow. Just... WOW. Embarrassing.",
+  "Your hand slipped? Or is that your skill level?",
+  "Computer says NO",
+  "404: Talent not found",
+  "Git gud scrub",
+  "Back to the tutorial for you",
+  "Did that HURT your ego?",
+  "FAIL compilation material right here",
+  "Press F to pay respects... to your dignity",
 ];
 
 const Game = () => {
@@ -230,6 +240,75 @@ const Game = () => {
             <div className="step" data-r="4" data-c="2"></div>
             <div className="step" data-r="4" data-c="3"></div>
             <div className="step finish" data-r="4" data-c="4">
+              <label className="goal" htmlFor="level-five"></label>
+            </div>
+          </div>
+
+          <input type="checkbox" id="level-five" />
+          <div className="level">
+            <div className="step start" data-r="4" data-c="4"></div>
+            <div className="step" data-r="3" data-c="4"></div>
+            <div className="step" data-r="2" data-c="4"></div>
+            <div className="step" data-r="1" data-c="4"></div>
+            <div className="step" data-r="0" data-c="4"></div>
+            <div className="step" data-r="0" data-c="3"></div>
+            <div className="step" data-r="0" data-c="2"></div>
+            <div className="step" data-r="1" data-c="2"></div>
+            <div className="step" data-r="1" data-c="1"></div>
+            <div className="step finish" data-r="1" data-c="0">
+              <label className="goal" htmlFor="level-six"></label>
+            </div>
+          </div>
+
+          <input type="checkbox" id="level-six" />
+          <div className="level">
+            <div className="step start" data-r="1" data-c="0"></div>
+            <div className="step" data-r="2" data-c="0"></div>
+            <div className="step" data-r="2" data-c="1"></div>
+            <div className="step" data-r="2" data-c="2"></div>
+            <div className="step" data-r="3" data-c="2"></div>
+            <div className="step" data-r="4" data-c="2"></div>
+            <div className="step" data-r="4" data-c="3"></div>
+            <div className="step" data-r="3" data-c="3"></div>
+            <div className="step" data-r="2" data-c="3"></div>
+            <div className="step" data-r="2" data-c="4"></div>
+            <div className="step finish" data-r="1" data-c="4">
+              <label className="goal" htmlFor="level-seven"></label>
+            </div>
+          </div>
+
+          <input type="checkbox" id="level-seven" />
+          <div className="level">
+            <div className="step start" data-r="1" data-c="4"></div>
+            <div className="step" data-r="0" data-c="4"></div>
+            <div className="step" data-r="0" data-c="3"></div>
+            <div className="step" data-r="1" data-c="3"></div>
+            <div className="step" data-r="1" data-c="2"></div>
+            <div className="step" data-r="0" data-c="2"></div>
+            <div className="step" data-r="0" data-c="1"></div>
+            <div className="step" data-r="1" data-c="1"></div>
+            <div className="step" data-r="2" data-c="1"></div>
+            <div className="step" data-r="3" data-c="1"></div>
+            <div className="step" data-r="4" data-c="1"></div>
+            <div className="step finish" data-r="4" data-c="0">
+              <label className="goal" htmlFor="level-eight"></label>
+            </div>
+          </div>
+
+          <input type="checkbox" id="level-eight" />
+          <div className="level">
+            <div className="step start" data-r="4" data-c="0"></div>
+            <div className="step" data-r="4" data-c="1"></div>
+            <div className="step" data-r="3" data-c="1"></div>
+            <div className="step" data-r="3" data-c="2"></div>
+            <div className="step" data-r="3" data-c="3"></div>
+            <div className="step" data-r="2" data-c="3"></div>
+            <div className="step" data-r="1" data-c="3"></div>
+            <div className="step" data-r="1" data-c="2"></div>
+            <div className="step" data-r="0" data-c="2"></div>
+            <div className="step" data-r="0" data-c="1"></div>
+            <div className="step" data-r="0" data-c="0"></div>
+            <div className="step finish" data-r="1" data-c="0">
               <label className="goal" htmlFor="game-end-trigger"></label>
             </div>
           </div>
