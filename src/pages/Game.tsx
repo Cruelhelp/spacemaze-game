@@ -240,7 +240,7 @@ const Game = () => {
             <div className="step" data-r="4" data-c="2"></div>
             <div className="step" data-r="4" data-c="3"></div>
             <div className="step finish" data-r="4" data-c="4">
-              <label className="goal" htmlFor="level-five"></label>
+              <label className="goal" htmlFor="level-four"></label>
             </div>
           </div>
 
@@ -256,7 +256,7 @@ const Game = () => {
             <div className="step" data-r="1" data-c="2"></div>
             <div className="step" data-r="1" data-c="1"></div>
             <div className="step finish" data-r="1" data-c="0">
-              <label className="goal" htmlFor="level-six"></label>
+              <label className="goal" htmlFor="level-five"></label>
             </div>
           </div>
 
@@ -273,7 +273,7 @@ const Game = () => {
             <div className="step" data-r="2" data-c="3"></div>
             <div className="step" data-r="2" data-c="4"></div>
             <div className="step finish" data-r="1" data-c="4">
-              <label className="goal" htmlFor="level-seven"></label>
+              <label className="goal" htmlFor="level-six"></label>
             </div>
           </div>
 
@@ -291,7 +291,7 @@ const Game = () => {
             <div className="step" data-r="3" data-c="1"></div>
             <div className="step" data-r="4" data-c="1"></div>
             <div className="step finish" data-r="4" data-c="0">
-              <label className="goal" htmlFor="level-eight"></label>
+              <label className="goal" htmlFor="level-seven"></label>
             </div>
           </div>
 
@@ -309,7 +309,7 @@ const Game = () => {
             <div className="step" data-r="0" data-c="1"></div>
             <div className="step" data-r="0" data-c="0"></div>
             <div className="step finish" data-r="1" data-c="0">
-              <label className="goal" htmlFor="game-end-trigger"></label>
+              <label className="goal" htmlFor="level-eight"></label>
             </div>
           </div>
 
